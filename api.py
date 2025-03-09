@@ -6,11 +6,11 @@ import os
 import gdown
 
 # ==== 🔹 CONFIGURATION ====
-MODEL_PATH = "cosine_sim.pkl"
-CSV_PATH = "data/medicines_cleaned.csv"
+MODEL_PATH = "cosine_sim_3000.pkl"
+CSV_PATH = "data/df_3000.csv"
 
 # Google Drive file ID for the model
-FILE_ID = "1GkWE-hvlduT1wPsLdQashjtr9MUiXnwb"  
+FILE_ID = "16EZzjfxjM6hEsEEeOUDatQPAREtLjHRp"  
 
 # ==== 🔹 FUNCTION TO DOWNLOAD THE MODEL ====
 def download_model():
