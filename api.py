@@ -2,6 +2,29 @@ from fastapi import FastAPI, HTTPException
 import pandas as pd
 import pickle
 from pydantic import BaseModel
+import os
+import gdown
+
+# ==== 🔹 CONFIGURATION ====
+MODEL_PATH = "models/cosine_sim_small.pkl"
+CSV_PATH = "data/medicines_cleaned_small.csv"
+
+# Google Drive file ID for the model
+FILE_ID = "1tDShxVuPrZfEuu3VsbgB2J2ugAisrkZo"  
+
+# ==== 🔹 FUNCTION TO DOWNLOAD THE MODEL ====
+def download_model():
+    """Download cosine_sim_small.pkl from Google Drive if it doesn't exist."""
+    if not os.path.exists(MODEL_PATH):
+        print("📥 Downloading cosine_sim_small.pkl from Google Drive...")
+        url = f"https://drive.google.com/uc?id={FILE_ID}"
+        os.makedirs("models", exist_ok=True)  # Ensure directory exists
+        gdown.download(url, MODEL_PATH, quiet=False)
+        print("✅ Model downloaded successfully!")
+
+# Ensure the model is available before proceeding
+download_model()
+
 
 # Define data types to reduce memory usage
 dtypes = {
