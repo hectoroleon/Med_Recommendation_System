@@ -3,7 +3,7 @@ import requests
 import pandas as pd
 
 # FastAPI endpoint URL
-API_URL = "http://127.0.0.1:8000/recommend"
+API_URL = "https://med-recommendation-system.onrender.com"
 
 # Load the medicines dataset to provide autocomplete suggestions
 df = pd.read_csv("data/medicines_cleaned.csv")  # Ensure this file is available
