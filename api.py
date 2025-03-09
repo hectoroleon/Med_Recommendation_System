@@ -10,16 +10,16 @@ dtypes = {
     "Uses": "string",
     "Side_effects": "string",
     "Manufacturer": "string",
-    "Satisfaction Score": "float32",  # Smaller float size
+    "Satisfaction Score": "float32",
 }
 
 # Load dataset and precomputed similarity matrix
 try:
-    df = pd.read_csv("data/medicines_cleaned.csv", dtype=dtypes)  
-    with open("model/cosine_sim.pkl", "rb") as f:
+    df = pd.read_csv("data/medicines_cleaned_small.csv", dtype=dtypes)  
+    with open("model/cosine_sim_small.pkl", "rb") as f:
         cosine_sim = pickle.load(f)
 except FileNotFoundError:
-    raise Exception("❌ Error: 'medicines_cleaned.csv' or 'cosine_sim.pkl' not found.")
+    raise Exception("❌ Error: 'medicines_cleaned_small.csv' or 'cosine_sim_small.pkl' not found.")
 
 # Initialize FastAPI app
 app = FastAPI()
