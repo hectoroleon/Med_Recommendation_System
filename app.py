@@ -6,7 +6,7 @@ import pandas as pd
 API_URL = "https://med-recommendation-system.onrender.com"
 
 # Load the medicines dataset to provide autocomplete suggestions
-df = pd.read_csv("data/medicines_cleaned_small.csv")  # Ensure this file is available
+df = pd.read_csv("data/medicines_cleaned.csv")
 
 # Streamlit UI
 st.title("💊 Medicine Recommendation System")

@@ -6,15 +6,15 @@ import os
 import gdown
 
 # ==== 🔹 CONFIGURATION ====
-MODEL_PATH = "models/cosine_sim_small.pkl"
-CSV_PATH = "data/medicines_cleaned_small.csv"
+MODEL_PATH = "cosine_sim.pkl"
+CSV_PATH = "data/medicines_cleaned.csv"
 
 # Google Drive file ID for the model
-FILE_ID = "1tDShxVuPrZfEuu3VsbgB2J2ugAisrkZo"  
+FILE_ID = "1GkWE-hvlduT1wPsLdQashjtr9MUiXnwb"  
 
 # ==== 🔹 FUNCTION TO DOWNLOAD THE MODEL ====
 def download_model():
-    """Download cosine_sim_small.pkl from Google Drive if it doesn't exist."""
+    """Download cosine_sim.pkl from Google Drive if it doesn't exist."""
     if not os.path.exists(MODEL_PATH):
         print("📥 Downloading cosine_sim_small.pkl from Google Drive...")
         url = f"https://drive.google.com/uc?id={FILE_ID}"
