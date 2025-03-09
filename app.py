@@ -8,9 +8,17 @@ API_URL = "https://med-recommendation-system.onrender.com/recommend"
 # Load the medicines dataset to provide autocomplete suggestions
 df = pd.read_csv("data/df_3000.csv")
 
+# Create a mapping of cleaned names → original names
+name_mapping = dict(zip(df["Medicine Name"], df["Original Name"]))
+
 # Streamlit UI
 st.title("💊 Medicine Recommendation System")
 st.markdown("Find similar medicines based on composition, uses, side effects, and user satisfaction.")
+
+# Dropdown with original names, but selecting gives cleaned names
+selected_original_name = st.selectbox("Select a medicine:", df["Original Name"].unique())
+# Convert back to cleaned name for API request
+selected_cleaned_name = df[df["Original Name"] == selected_original_name]["Medicine Name"].values[0]
 
 # Sidebar - Explanation and Customization
 st.sidebar.header("⚙️ Customize Your Recommendation")
