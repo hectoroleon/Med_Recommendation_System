@@ -3,9 +3,19 @@ import pandas as pd
 import pickle
 from pydantic import BaseModel
 
+# Define data types to reduce memory usage
+dtypes = {
+    "Medicine Name": "string",
+    "Composition": "string",
+    "Uses": "string",
+    "Side_effects": "string",
+    "Manufacturer": "string",
+    "Satisfaction Score": "float32",  # Smaller float size
+}
+
 # Load dataset and precomputed similarity matrix
 try:
-    df = pd.read_csv("data/medicines_cleaned.csv")  # Ensure this dataset is cleaned and updated
+    df = pd.read_csv("data/medicines_cleaned.csv", dtype=dtypes)  
     with open("model/cosine_sim.pkl", "rb") as f:
         cosine_sim = pickle.load(f)
 except FileNotFoundError:
@@ -50,7 +60,7 @@ def recommend_medicines(medicine_name, df, cosine_sim, satisfaction_weight=0.3, 
 
     # Normalize Satisfaction Score
     rec_df["Satisfaction Score"] = (rec_df["Satisfaction Score"] - rec_df["Satisfaction Score"].min()) / \
-                                   (rec_df["Satisfaction Score"].max() - rec_df["Satisfaction Score"].min())
+                                    (rec_df["Satisfaction Score"].max() - rec_df["Satisfaction Score"].min())
 
     # Compute final score
     rec_df["Final Score"] = (
