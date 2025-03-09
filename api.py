@@ -16,7 +16,7 @@ FILE_ID = "1GkWE-hvlduT1wPsLdQashjtr9MUiXnwb"
 def download_model():
     """Download cosine_sim.pkl from Google Drive if it doesn't exist."""
     if not os.path.exists(MODEL_PATH):
-        print("📥 Downloading cosine_sim_small.pkl from Google Drive...")
+        print("📥 Downloading cosine_sim.pkl from Google Drive...")
         url = f"https://drive.google.com/uc?id={FILE_ID}"
         os.makedirs("models", exist_ok=True)  # Ensure directory exists
         gdown.download(url, MODEL_PATH, quiet=False)
@@ -26,23 +26,21 @@ def download_model():
 download_model()
 
 
-# Define data types to reduce memory usage
-dtypes = {
+# ==== LOAD DATA ====
+df = pd.read_csv(CSV_PATH, dtype={
     "Medicine Name": "string",
     "Composition": "string",
     "Uses": "string",
     "Side_effects": "string",
     "Manufacturer": "string",
     "Satisfaction Score": "float32",
-}
+})
 
-# Load dataset and precomputed similarity matrix
-try:
-    df = pd.read_csv("data/medicines_cleaned_small.csv", dtype=dtypes)  
-    with open("models/cosine_sim_small.pkl", "rb") as f:
-        cosine_sim = pickle.load(f)
-except FileNotFoundError:
-    raise Exception("❌ Error: 'medicines_cleaned_small.csv' or 'cosine_sim_small.pkl' not found.")
+# Load the precomputed cosine similarity matrix
+with open(MODEL_PATH, "rb") as f:
+    cosine_sim = pickle.load(f)
+
+print("✅ Data and model loaded successfully!")
 
 # Initialize FastAPI app
 app = FastAPI()
