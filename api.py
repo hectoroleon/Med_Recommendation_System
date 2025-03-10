@@ -10,7 +10,7 @@ MODEL_PATH = "cosine_sim_3000.pkl"
 CSV_PATH = "data/df_3000.csv"
 
 # Google Drive file ID for the model
-FILE_ID = "16EZzjfxjM6hEsEEeOUDatQPAREtLjHRp"  
+FILE_ID = "1SQnkYHyxicwPogFcSRrGnyD5x0FpU0yr"  
 
 # ==== 🔹 FUNCTION TO DOWNLOAD THE MODEL ====
 def download_model():
