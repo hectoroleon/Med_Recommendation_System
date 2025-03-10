@@ -72,18 +72,12 @@ st.sidebar.markdown(f"""
 # Number of recommendations
 top_n = st.sidebar.slider("🔢 Number of Recommendations", 1, 10, 5)
 
-# Medicine selection with autocomplete dropdown
-medicine_name = st.selectbox(
-    "🔍 Select a medicine:",
-    options=df["Medicine Name"].unique(),
-    index=0
-)
 
 # Submit button
 if st.button("🔎 Get Recommendations"):
     # API request payload
     payload = {
-        "medicine_name": medicine_name,
+        "medicine_name": selected_cleaned_name,
         "top_n": top_n,
         "alpha": alpha,
         "satisfaction_weight": satisfaction_weight,
@@ -98,20 +92,24 @@ if st.button("🔎 Get Recommendations"):
         recommendations = response.json()
 
         # Display recommendations
-        st.subheader(f"📌 Recommended Medicines for: {medicine_name}")
+        st.subheader(f"📌 Recommended Medicines:")
 
+        # Show recommendations with original names and full details
         if recommendations:
-            for idx, rec in enumerate(recommendations, start=1):
+            for rec in recommendations:
+                original_rec_name = name_mapping.get(rec["Medicine Name"], rec["Medicine Name"])
+            # Display medicine details in a structured way
                 st.markdown(f"""
-                **{idx}. {rec['Medicine Name']}**  
+                ### 🔹 **{original_rec_name}**
                 - **Composition:** {rec['Composition']}
                 - **Uses:** {rec['Uses']}
-                - **Satisfaction Score:** {round(rec['Satisfaction Score'], 2)}
+                - **Satisfaction Score:** {round(rec['Satisfaction Score'] * 100, 2)}%
                 - **Side Effects:** {rec['Side_effects']}
                 - **Manufacturer:** {rec['Manufacturer']}
                 """)
+
         else:
-            st.warning("⚠️ No recommendations found. Try adjusting the parameters.")
+            st.error("❌ No recommendations found. Please try a different medicine.")
     else:
         st.error("❌ Error fetching recommendations. Please check the API connection.")
 
