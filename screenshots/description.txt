@@ -1,0 +1,58 @@
+# 📖 Medicine Recommendation System – Interface Overview
+
+This section provides an overview of how the **Medicine Recommendation System** works, explaining the customization settings and the recommendation output.
+
+---
+
+## ⚙️ Customization Panel – Fine-tuning Recommendations
+
+### 🖼️ **Custom_Settings_1**
+
+- This section allows users to **adjust weights** for similarity, satisfaction score, side effects, and manufacturer preferences.
+- Users can control:
+  - **Similarity Weight (Alpha):** Determines whether recommendations should be based on **composition & usage similarity** or **user satisfaction**.
+  - **Satisfaction Score Weight:** Prioritizes medicines with **better user reviews**.
+  - **Side Effect Penalty:** Avoids medicines with **similar adverse effects**.
+  - **Manufacturer Penalty:** Gives **less preference to rare manufacturers** and favors **trusted brands**.
+- **Recommended values** are pre-selected but adjustable.
+
+---
+
+### 🖼️ **Custom_Settings_2**
+
+- This section continues the customization panel, focusing on **Side Effect Penalty**, **Manufacturer Penalty**, and **Number of Recommendations**.
+- Users can:
+  - **Fine-tune how much side effects impact recommendations**.
+  - **Choose whether to prioritize well-known manufacturers or allow more diversity**.
+  - **Select how many medicines should be recommended** (from 1 to 10).
+
+📌 **Why is this useful?**  
+This customization **personalizes** the recommendations based on user preferences, ensuring a balance between similarity, safety, and reliability.
+
+---
+
+## 🔍 Example of a Medicine Recommendation
+
+### 🖼️ **Example_Med_1_1**
+
+- **This screenshot shows an actual recommendation for a selected medicine.**
+- The user has chosen **"Allegra 120mg Tablet"**, and after clicking **"Get Recommendations"**, the system suggests **similar medicines**.
+- Each recommended medicine includes:
+  - **Name**
+  - **Composition**
+  - **Uses**
+  - **Satisfaction Score** (user reviews)
+  - **Side Effects**
+  - **Manufacturer**
+
+---
+
+### 🖼️ **Example_Med_1_2**
+
+- This is a **continuation of the recommendation results**, displaying more recommended medicines.
+- The **footer** of the interface is visible, crediting the developer **Héctor Ornelas** and showing that the system is built with **Streamlit & FastAPI**.
+
+📌 **Why is this useful?**  
+The user can see a **variety of medicines that match their needs**, while still having control over which factors (composition, satisfaction, side effects, manufacturers) matter the most.
+
+---
